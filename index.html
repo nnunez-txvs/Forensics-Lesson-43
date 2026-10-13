@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forensic Evidence Access Terminal</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #58a6ff;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .terminal-box {
+            border: 2px solid #238636;
+            background-color: #161b22;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(35, 134, 54, 0.4);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        h2 { color: #3fb950; margin-top: 0; }
+        input[type="text"] {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            color: #7ee787;
+            font-size: 1.2rem;
+            padding: 10px;
+            text-align: center;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            width: 80%;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #238636;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-family: inherit;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover { background-color: #2ea043; }
+        #status { margin-top: 15px; font-weight: bold; }
+        .success { color: #3fb950; }
+        .error { color: #f85149; }
+    </style>
+</head>
+<body>
+
+<div class="terminal-box">
+    <h2>EVIDENCE CLEARANCE TERMINAL</h2>
+    <p>Enter 6-Character Master Code [Digit 1-4]-[Alpha A-B]:</p>
+    
+    <input type="text" id="codeInput" maxlength="7" placeholder="XXXX-XX" autocomplete="off">
+    <br>
+    <button onclick="verifyCode()">SUBMIT CODE</button>
+    
+    <div id="status"></div>
+</div>
+
+<script>
+    function verifyCode() {
+        const input = document.getElementById('codeInput').value.trim().toUpperCase();
+        const status = document.getElementById('status');
+        
+        // Target code: 4327-OP or 4327OP
+        if (input === "4327-OP" || input === "4327OP") {
+            status.className = "success";
+            status.innerHTML = "ACCESS GRANTED.<br>Qualitative logs verified. Chain of custody secured. Proceed to reflection slide.";
+        } else {
+            status.className = "error";
+            status.innerHTML = "ACCESS DENIED.<br>Incorrect digits or alpha code. Re-check Zone Evidence Logs.";
+        }
+    }
+</script>
+
+</body>
+</html>
